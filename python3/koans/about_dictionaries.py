@@ -9,49 +9,48 @@ from runner.koan import *
 
 class AboutDictionaries(Koan):
     def test_creating_dictionaries(self):
-        empty_dict = dict()
+        empty_dict = dict() #dict() returns an empty dictionary
         self.assertEqual(dict, type(empty_dict))
         self.assertDictEqual({}, empty_dict)
-        self.assertEqual(__, len(empty_dict))
+        self.assertEqual(0, len(empty_dict))
 
     def test_dictionary_literals(self):
         empty_dict = {}
         self.assertEqual(dict, type(empty_dict))
         babel_fish = { 'one': 'uno', 'two': 'dos' }
-        self.assertEqual(__, len(babel_fish))
+        self.assertEqual(2, len(babel_fish)) # 2 is the amount of keys and values together
 
     def test_accessing_dictionaries(self):
         babel_fish = { 'one': 'uno', 'two': 'dos' }
-        self.assertEqual(__, babel_fish['one'])
-        self.assertEqual(__, babel_fish['two'])
+        self.assertEqual('uno', babel_fish['one'])
+        self.assertEqual('dos', babel_fish['two']) # ['key'] gives you 'value'
 
     def test_changing_dictionaries(self):
         babel_fish = { 'one': 'uno', 'two': 'dos' }
-        babel_fish['one'] = 'eins'
+        babel_fish['one'] = 'eins' #that will change the value of a certain key
 
-        expected = { 'two': 'dos', 'one': __ }
+        expected = { 'two': 'dos', 'one': 'eins' }
         self.assertDictEqual(expected, babel_fish)
 
     def test_dictionary_is_unordered(self):
         dict1 = { 'one': 'uno', 'two': 'dos' }
-        dict2 = { 'two': 'dos', 'one': 'uno' }
+        dict2 = { 'two': 'dos', 'one': 'uno' } #if a dict has the same keys they are the same regardless of what order they are in
 
-        self.assertEqual(__, dict1 == dict2)
+        self.assertEqual(True, dict1 == dict2)
 
 
     def test_dictionary_keys_and_values(self):
         babel_fish = {'one': 'uno', 'two': 'dos'}
-        self.assertEqual(__, len(babel_fish.keys()))
-        self.assertEqual(__, len(babel_fish.values()))
-        self.assertEqual(__, 'one' in babel_fish.keys())
-        self.assertEqual(__, 'two' in babel_fish.values())
-        self.assertEqual(__, 'uno' in babel_fish.keys())
-        self.assertEqual(__, 'dos' in babel_fish.values())
+        self.assertEqual(2, len(babel_fish.keys()))
+        self.assertEqual(2, len(babel_fish.values())) # there are 2 keys, 2 values, so this will be 2
+        self.assertEqual(True, 'one' in babel_fish.keys())
+        self.assertEqual(False, 'two' in babel_fish.values())
+        self.assertEqual(False, 'uno' in babel_fish.keys())
+        self.assertEqual(True, 'dos' in babel_fish.values()) #Just have to know what a key and a value is to get this
 
     def test_making_a_dictionary_from_a_sequence_of_keys(self):
-        cards = {}.fromkeys(('red warrior', 'green elf', 'blue valkyrie', 'yellow dwarf', 'confused looking zebra'), 42)
+        cards = {}.fromkeys(('red warrior', 'green elf', 'blue valkyrie', 'yellow dwarf', 'confused looking zebra'), 42) #this will evaluate the keys in the first section, and the values in the second. This will evaluate 42 for all the values because there is only 1 thing specified there.
 
-        self.assertEqual(__, len(cards))
-        self.assertEqual(__, cards['green elf'])
-        self.assertEqual(__, cards['yellow dwarf'])
-
+        self.assertEqual(5, len(cards))
+        self.assertEqual(42, cards['green elf'])
+        self.assertEqual(42, cards['yellow dwarf'])

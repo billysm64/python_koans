@@ -11,11 +11,13 @@ class AboutNone(Koan):
 
     def test_none_is_an_object(self):
         "Unlike NULL in a lot of languages"
-        self.assertEqual(__, isinstance(None, object))
+        # None is a type of object
+        self.assertEqual(True, isinstance(None, object))
 
     def test_none_is_universal(self):
         "There is only one None"
-        self.assertEqual(____, None is None)
+        # None is the only None there is, and there can't be another None because there just can't be, it isn't possible. It would break a hole in the time-space continuum for Null or Undefined to be extra things in Python.
+        self.assertEqual(True, None is None)
 
     def test_what_exception_do_you_get_when_calling_nonexistent_methods(self):
         """
@@ -36,16 +38,19 @@ class AboutNone(Koan):
         # Need a recap on how to evaluate __class__ attributes?
         #
         #     https://github.com/gregmalcolm/python_koans/wiki/Class-Attribute
-
-        self.assertEqual(__, ex2.__class__)
+        self.assertEqual(AttributeError, ex2.__class__)
 
         # What message was attached to the exception?
         # (HINT: replace __ with part of the error message.)
-        self.assertRegex(ex2.args[0], __)
+        self.assertRegex(ex2.args[0], "NoneType")
+
+        # AttributeError is a type of error that evaluates to the same as something that gets that exact same error.
+        #NoneType is in a list called ex2.args because it is one thing that does not have any methods. None can't do anything but be None and that's the only thing it's ever been able to be.
 
     def test_none_is_distinct(self):
         """
         None is distinct from other things which are False.
         """
-        self.assertEqual(__, None is not 0)
-        self.assertEqual(__, None is not False)
+        # None is the only thing that evaluates to None—not 0 or False or an empty string or any of that.
+        self.assertEqual(True, None is not 0)
+        self.assertEqual(True, None is not False)
